@@ -1,0 +1,38 @@
+NAME: FaceDetection
+MODEL: FaceBoxes_ori
+DATASET: WiderFace
+NUM_CLASS: 2
+USE_GPU: True
+MULTI_GPU: True
+LOC_WEIGHT: 2.0
+PRIOR:
+  MIN_SIZES: [[32, 64, 128], [256], [512]]
+  STEPS: [32, 64, 128]
+  VARIANCE: [0.1, 0.2]
+  CLIP: False
+  LOC_WEIGHT: 2.0
+  GPU_TRAIN: True
+#RESUME: check_points/FaceDetection_20200327-13-30-07/models/epoch_180.pth
+TRAIN:
+  BATCH_SIZE: 1
+  EPOCH: 200
+  NUM_WORKERS: 0
+  LR: 0.001
+  TRAIN_DATA:
+
+  OPTIMIZATION:
+    TYPE: ADAM
+    MOMENTUM: 0.9
+    WEIGHT_DECAY: 0.0001
+    SCHEDULER:
+      TYPE: COS
+      EPOCH: 200
+
+VAL:
+  BATCH_SIZE: 1
+  NUM_WORKERS: 1
+  VAL_DATA:
+
+SAVE_PATH: check_points/
+VISDOM: False
+PORT: 10011
